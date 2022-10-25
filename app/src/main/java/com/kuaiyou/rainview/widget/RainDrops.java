@@ -4,10 +4,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.kuaiyou.rainview.manager.RainInfo;
+import com.kuaiyou.rainview.manager.RainManager;
 import com.kuaiyou.rainview.model.ImageReader;
 
 public class RainDrops extends View {
@@ -54,5 +56,11 @@ public class RainDrops extends View {
         mRect.set(0, 0, mRainInfo.getSize().getWidth(), mRainInfo.getSize().getHeight());
         canvas.drawBitmap(mImage, null, mRect, null);
 //        Log.d(TAG, "onDraw: ");
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        mRainInfo.getRainInterface().onRainClick();
+        return super.onTouchEvent(event);
     }
 }

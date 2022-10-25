@@ -27,10 +27,14 @@ public class RainManager {
 
     private List mRainList;
 
-    interface RainInterface {
+    private RainInterface mRainCallback;
+
+    public interface RainInterface {
         void onRainStart();
 
         void onRaining();
+
+        void onRainClick();
 
         void onRainEnd();
     }
@@ -39,10 +43,14 @@ public class RainManager {
         mViewGroup = viewGroup;
         mContext = context;
         ImageReaderInit(type);
-        mRainList = acquireRainList(100);
+    }
+
+    public void setRainCallback(RainInterface rainCallback) {
+        this.mRainCallback = rainCallback;
     }
 
     public void rain() {
+        mRainList = acquireRainList(100);
         linktoUI();
     }
 
@@ -78,6 +86,7 @@ public class RainManager {
             RainInfo rainInfo = new RainInfo(new Size(mImageReader.getImageWidth(),
                     mImageReader.getImageHeight()), i);
             rainInfo.setSpeed(randomCoordinate(5)+5);
+            rainInfo.setRainInterface(mRainCallback);
             if (rainInfoPointer != null) {
                 rainInfo.setPrevious(rainInfoPointer);
                 rainInfoPointer = rainInfo;

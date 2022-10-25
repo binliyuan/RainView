@@ -27,6 +27,10 @@ public class RainInfo {
 
     private int speed = 3;
 
+    private RainManager.RainInterface rainInterface;
+
+
+
     public RainInfo(Size size, int id) {
         this.size = size;
         this.id = id;
@@ -56,6 +60,14 @@ public class RainInfo {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public RainManager.RainInterface getRainInterface() {
+        return rainInterface;
+    }
+
+    public void setRainInterface(RainManager.RainInterface rainInterface) {
+        this.rainInterface = rainInterface;
     }
 
     public Size getSize() {
