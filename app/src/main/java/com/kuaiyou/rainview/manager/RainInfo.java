@@ -1,8 +1,7 @@
-package com.kuaiyou.redenvelopes.manager;
+package com.kuaiyou.rainview.manager;
 
 import android.util.Size;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,10 +33,6 @@ public class RainInfo {
         satisfactionArea = new LinkedList<>();
     }
 
-//    public List getRainSection() {
-//        return rainSection;
-//    }
-
     public void addSatisfactionArea(int[] area) {
         satisfactionArea.add(area);
     }
@@ -49,7 +44,6 @@ public class RainInfo {
     public int[] getRainSection() {
         return range;
     }
-
 
     public void setRainSection(int x, int y) {
         range[0] = x;

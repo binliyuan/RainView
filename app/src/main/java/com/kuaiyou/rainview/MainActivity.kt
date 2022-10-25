@@ -1,4 +1,4 @@
-package com.kuaiyou.redenvelopes
+package com.kuaiyou.rainview
 
 
 import android.app.Activity
@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
-import com.kuaiyou.redenvelopes.manager.RainManager
-import com.kuaiyou.redenvelopes.widget.RainLayout
+import com.kuaiyou.rainview.manager.RainManager
+import com.kuaiyou.rainview.widget.RainLayout
 
 class MainActivity : Activity() {
     var TAG = "MainActivity"

@@ -1,4 +1,4 @@
-package com.kuaiyou.redenvelopes
+package com.kuaiyou.rainview
 
 import org.junit.Test
 

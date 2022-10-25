@@ -1,4 +1,4 @@
-package com.kuaiyou.redenvelopes.model;
+package com.kuaiyou.rainview.model;
 
 import android.content.Context;
 import android.graphics.Bitmap;

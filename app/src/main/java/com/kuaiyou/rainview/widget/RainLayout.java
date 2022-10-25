@@ -1,21 +1,27 @@
-package com.kuaiyou.redenvelopes.widget;
+package com.kuaiyou.rainview.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
+
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.kuaiyou.redenvelopes.manager.RainInfo;
+import com.kuaiyou.rainview.R;
+import com.kuaiyou.rainview.manager.RainInfo;
 
 public class RainLayout extends RelativeLayout {
 
     private static String TAG = "RainLayout";
 
+    private Context mContext;
+
     public RainLayout(Context context) {
         super(context);
-        setBackgroundColor(Color.RED);
+        mContext = context;
+        setBackgroundResource(R.drawable.spread);
+//        setBackgroundColor(Color.RED);
     }
 
     @Override
@@ -33,6 +39,9 @@ public class RainLayout extends RelativeLayout {
             if (rainInfo != null) {
                 rainInfo.setTop(rainInfo.getTop() + 1 * rainInfo.getSpeed());
             }
+            if (rainInfo.getTop() >= DisplayWidth()) {
+                removeViewAt(i);
+            }
         }
     }
 
@@ -44,5 +53,10 @@ public class RainLayout extends RelativeLayout {
         requestLayout();
         postInvalidate();
         //
+    }
+
+    private int DisplayWidth() {
+        DisplayMetrics displayMetrics = mContext.getResources().getDisplayMetrics();
+        return displayMetrics.heightPixels;
     }
 }

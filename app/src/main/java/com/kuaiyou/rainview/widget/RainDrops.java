@@ -1,16 +1,14 @@
-package com.kuaiyou.redenvelopes.widget;
+package com.kuaiyou.rainview.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Rect;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.kuaiyou.redenvelopes.manager.RainInfo;
-import com.kuaiyou.redenvelopes.model.ImageReader;
+import com.kuaiyou.rainview.manager.RainInfo;
+import com.kuaiyou.rainview.model.ImageReader;
 
 public class RainDrops extends View {
     private static String TAG = "RainDrops";
@@ -31,7 +29,7 @@ public class RainDrops extends View {
         super(context);
         mImage = imageReader.getmStandardBitmap();
         mRainInfo = rainInfo;
-        setBackgroundColor(Color.GREEN);
+//        setBackgroundColor(Color.GREEN);
         layoutParams = new RelativeLayout.LayoutParams(mRainInfo.getSize().getWidth(), mRainInfo.getSize().getHeight());
         setLayoutParams(layoutParams);
     }

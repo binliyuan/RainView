@@ -1,4 +1,4 @@
-package com.kuaiyou.redenvelopes.manager;
+package com.kuaiyou.rainview.manager;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
@@ -7,10 +7,10 @@ import android.util.Size;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.kuaiyou.redenvelopes.model.ImageReader;
-import com.kuaiyou.redenvelopes.model.ImageReaderDefalut;
-import com.kuaiyou.redenvelopes.model.ImageReaderNet;
-import com.kuaiyou.redenvelopes.widget.RainDrops;
+import com.kuaiyou.rainview.model.ImageReader;
+import com.kuaiyou.rainview.model.ImageReaderDefalut;
+import com.kuaiyou.rainview.model.ImageReaderNet;
+import com.kuaiyou.rainview.widget.RainDrops;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +39,7 @@ public class RainManager {
         mViewGroup = viewGroup;
         mContext = context;
         ImageReaderInit(type);
-        mRainList = acquireRainList(10);
-
+        mRainList = acquireRainList(100);
     }
 
     public void rain() {
@@ -67,15 +66,19 @@ public class RainManager {
         }
     }
 
+    /**
+     * 可以放到Layout里面动态生成，减少初始化的消耗
+     * @param count 生成的雨点个数
+     * @return
+     */
     private List acquireRainList(int count) {
         List list = new ArrayList<RainDrops>();
         RainInfo rainInfoPointer = null;
-        int displayWidth = DisplayWidth();
         for (int i = 0; i < count; i++) {
             RainInfo rainInfo = new RainInfo(new Size(mImageReader.getImageWidth(),
                     mImageReader.getImageHeight()), i);
+            rainInfo.setSpeed(randomCoordinate(5)+5);
             if (rainInfoPointer != null) {
-//                rainInfoPointer.setPrevious(rainInfo);
                 rainInfo.setPrevious(rainInfoPointer);
                 rainInfoPointer = rainInfo;
             } else {
@@ -91,11 +94,10 @@ public class RainManager {
     private void dispersRain(RainInfo rainInfo, int displayWidth) {
         if (rainInfo.getHead()) {
             rainInfo.setTop(rainInfo.getTop() - mImageReader.getImageHeight());
+            Log.d(TAG, "ImageWidth area: " + mImageReader.getImageWidth());
             int point = randomCoordinate(displayWidth - mImageReader.getImageWidth());
             rainInfo.setRainSection(point, point + mImageReader.getImageWidth());
             rainInfo.setLeft(point);
-
-//            Log.d(TAG, "area: " + area[0] + "point:" + point + "Width" + mImageReader.getImageWidth());
             if (point - 0 >= mImageReader.getImageWidth()) {
                 int[] area = new int[2];
                 area[0] = 0;
@@ -135,7 +137,7 @@ public class RainManager {
     }
 
     /**
-     * @param rainInfo 每一个
+     * @param rainInfo 每一个雨点的信息
      * @return
      */
     private int DetermineScopes(RainInfo rainInfo) {
