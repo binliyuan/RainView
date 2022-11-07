@@ -7,7 +7,7 @@ public abstract class ImageReader {
 
     protected Context mContext;
     protected String ImagePath;
-    protected Bitmap mStandardBitmap;
+    protected Bitmap mStandardBitmap[];
 
     protected abstract void initImage();
 
@@ -25,7 +25,7 @@ public abstract class ImageReader {
         initImage();
     }
 
-    public Bitmap getmStandardBitmap() {
+    public Bitmap[] getmStandardBitmap() {
         return mStandardBitmap;
     }
 }

@@ -85,7 +85,7 @@ public class RainManager {
         for (int i = 0; i < count; i++) {
             RainInfo rainInfo = new RainInfo(new Size(mImageReader.getImageWidth(),
                     mImageReader.getImageHeight()), i);
-            rainInfo.setSpeed(randomCoordinate(5)+5);
+            rainInfo.setSpeed(randomCoordinate(2)+2);
             rainInfo.setRainInterface(mRainCallback);
             if (rainInfoPointer != null) {
                 rainInfo.setPrevious(rainInfoPointer);

@@ -29,8 +29,6 @@ public class RainInfo {
 
     private RainManager.RainInterface rainInterface;
 
-
-
     public RainInfo(Size size, int id) {
         this.size = size;
         this.id = id;
